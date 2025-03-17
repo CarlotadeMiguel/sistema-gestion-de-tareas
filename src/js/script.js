@@ -24,14 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //Función para eliminar una tarea
     eliminarTarea = (id) => {
         tareas = tareas.filter(tarea => tarea.tareaId !== id);
-        guardarDatos(tareasActualizadas);
+        guardarDatos(tareas);
         mostrarTareas();
     }
 
     // Función para mostrar las tareas guardadas
     const mostrarTareas = () => {
         contenedorTareas.innerHTML = '';
-        tareas.forEach((tarea, indice) => {
+        tareas.forEach((tarea) => {
             const tarjetaTarea = document.createElement('article');
             tarjetaTarea.classList.add('tarea-card');
             tarjetaTarea.innerHTML = `
