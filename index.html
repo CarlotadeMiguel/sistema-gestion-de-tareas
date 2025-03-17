@@ -44,8 +44,10 @@
 </section>
 
 <!-- Sección de Tareas -->
-<section id="tareas">
+<section">
+    
     <h2>Tareas</h2>
+    <div id = "tareas">
     <article class="tarea-card">
         <h3>Tarea 1</h3>
         <progress value="75" max="100">75%</progress>
@@ -68,8 +70,33 @@
         <p>Prioridad: <meter id="prioridad-tarea" min="0" max="1"></meter></p>
         <button onclick="cerrarDialogo()">Cerrar</button>
     </dialog>
-</section>
+</div>
+    <form id="formularioTareas">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+    
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" required></textarea>
+    
+        <label for="fechaLimite">Fecha límite:</label>
+        <input type="date" id="fechaLimite" name="fechaLimite" required>
+    
+        <label for="prioridad">Prioridad:</label>
+        <select id="prioridad" name="prioridad" required>
+            <option value="">Seleccione una prioridad</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+        </select>
 
-<script src="script.js"></script> <!-- Asegúrate de enlazar tu archivo JavaScript -->
+        <label for="progreso">Progreso:</label>
+        <input type="number" max="100" min ="0" id="progreso" name="progreso"></input>
+    
+        <label for="dependencias">Dependencias:</label>
+        <input type="text" id="dependencias" name="dependencias" placeholder="Ejemplo: Tarea 1, Tarea 2">
+    
+        <button type="submit">Guardar Tarea</button>
+    </form>
+</section>
 </body>
 </html>
