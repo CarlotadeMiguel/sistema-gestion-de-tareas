@@ -16,6 +16,13 @@
   <body>
     <!-- Navegación por fragmentos -->
     <nav aria-label="Módulos principales">
+      <!-- Logo -->
+      <img
+        loading="lazy"
+        src="./src/img/restaurante.jpg"
+        alt="Logo"
+        id="logo"
+      />
       <a href="#reservas">Reservas</a>
       <a href="#tareas">Tareas</a>
     </nav>
@@ -54,6 +61,7 @@
           name="telefono"
           pattern="[0-9]{9}"
           required
+          placeholder="123456789"
         />
 
         <label for="fecha">Fecha y Hora:</label>
@@ -67,6 +75,7 @@
           min="1"
           max="10"
           required
+          placeholder="1"
         />
 
         <button type="submit">Reservar</button>
