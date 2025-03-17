@@ -1,6 +1,106 @@
 /* Estilos generales */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Variables CSS Globales */
+:root {
+  --color-primary: #2c3e50; /* Color principal para botones y títulos */
+  --color-danger: #e74c3c; /* Uso en errores y elementos críticos */
+  --spacing-base: 1rem; /* Unidad base para márgenes/paddings */
+  --spacing-sm: 0.5rem; /* Variación pequeña de espaciado */
+  --spacing-lg: 2rem; /* Variación grande de espaciado */
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para tarjetas */
+}
+
+/* Modo oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #0b1ae9; /* Color principal para botones y títulos en modo oscuro */
+    --color-danger: #c0392b; /* Uso en errores y elementos críticos en modo oscuro */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra más oscura para tarjetas */
+  }
+}
+
+/* Estilos de navegación */
+nav {
+  background-color: var(--color-primary);
+  padding: var(--spacing-base);
+  display: flex;
+  justify-content: space-around;
+
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(0, 0, 0);
+  font-size: 3rem;
+  font-weight: uppercase;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: var(--spacing-sm);
+  font-weight: uppercase;
+}
+
+/* Estilos de secciones y artículos */
+section {
+  padding: var(--spacing-lg);
+}
+
+h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-base);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: uppercase;
+}
+
+.reserva-card,
+.tarea-card {
+  background-color: white;
+  padding: var(--spacing-base);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--spacing-lg);
+  border-radius: 8px;
+}
+
+img {
+  width: auto;
+  border-radius: 8px;
+}
+
+.reserva-card time,
+.tarea-card h3 {
+  color: var(--color-primary);
+}
+
+button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--spacing-sm);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+button:hover {
+  background-color: darken(var(--color-primary), 50%);
+}
+
+.estadisticas {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-base);
+  background-color: white;
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+}
+
+dialog {
+  padding: var(--spacing-lg);
+  background-color: white;
+  box-shadow: var(--shadow);
+  border-radius: 8px;
 }
