@@ -81,6 +81,7 @@ button {
 
 button:hover {
     background-color: darken(var(--color-primary), 50%);
+    color: gray;
 }
 
 .estadisticas {
@@ -96,4 +97,61 @@ dialog {
     background-color: white;
     box-shadow: var(--shadow);
     border-radius: 8px;
+}
+
+/* Estilos para el formulario de reserva inteligente */
+#reserva {
+    padding: var(--spacing-lg);
+    background-color: white;
+    box-shadow: var(--shadow);
+    border-radius: 50px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-bottom: var(--spacing-lg);
+}
+
+#reserva h2 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-base);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: uppercase;
+}
+
+#form-reserva {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-reserva label {
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+}
+
+#form-reserva input {
+    margin-bottom: var(--spacing-base);
+    padding: var(--spacing-sm);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#form-reserva button {
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--spacing-sm);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    align-self: flex-end;
+}
+
+#form-reserva button:hover {
+    background-color: darken(var(--color-primary), 10%);
+    color: gray;
+}
+
+#error-message {
+    color: var(--color-danger);
+    margin-top: var(--spacing-base);
 }
