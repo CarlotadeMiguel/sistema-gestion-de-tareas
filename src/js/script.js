@@ -23,9 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Función para eliminar una tarea
     eliminarTarea = (id) => {
-        const tareasActualizadas = tareas.filter(tarea => tarea.tareaId !== id);
+        tareas = tareas.filter(tarea => tarea.tareaId !== id);
         guardarDatos(tareasActualizadas);
-        tareas = tareasActualizadas;
         mostrarTareas();
     }
 
