@@ -1,75 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sistema de Navegación y Contenido Accesible">
-    <meta name="author" content="Tu nombre">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sistema de Navegación y Contenido Accesible"
+    />
+    <meta name="author" content="Tu nombre" />
     <title>Navegación y Contenido Accesible</title>
-    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="src/css/styles.css" />
 
     <script src="src/js/script.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Navegación por fragmentos -->
+    <nav aria-label="Módulos principales">
+      <a href="#reservas">Reservas</a>
+      <a href="#tareas">Tareas</a>
+    </nav>
 
-<!-- Navegación por fragmentos -->
-<nav aria-label="Módulos principales">
-    <a href="#reservas">Reservas</a>
-    <a href="#tareas">Tareas</a>
-</nav>
+    <!-- Formulario de Reserva Inteligente -->
+    <section id="reserva">
+      <h2>Formulario de Reserva</h2>
+      <form id="form-reserva">
+        <label for="nombre">Nombre del Cliente:</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          required
+          placeholder="John"
+        />
+        <label for="apellido1">Primer apellido:</label>
+        <input
+          type="text"
+          id="apellido1"
+          name="apellido1"
+          required
+          placeholder="Smith"
+        />
+        <label for="apellido2">Segundo apellido:</label>
+        <input
+          type="text"
+          id="apellido2"
+          name="apellido2"
+          placeholder="Gonzalez"
+        />
+        <label for="telefono">Teléfono:</label>
+        <input
+          type="tel"
+          id="telefono"
+          name="telefono"
+          pattern="[0-9]{9}"
+          required
+        />
 
-<!-- Sección de Reservas -->
-<section id="reservas">
-    <h2>Reservas</h2>
-    <article class="reserva-card">
-        <time datetime="2023-10-15">15 Oct 2023</time>
-        <p>Hora: 10:00 AM</p>
-        <p>Cliente: Juan Pérez</p>
-    </article>
-    <article class="reserva-card">
-        <time datetime="2023-10-16">16 Oct 2023</time>
-        <p>Hora: 11:00 AM</p>
-        <p>Cliente: Ana Gómez</p>
-    </article>
-    <article class="reserva-card">
-        <time datetime="2023-10-17">17 Oct 2023</time>
-        <p>Hora: 12:00 PM</p>
-        <p>Cliente: Carlos López</p>
-    </article>
-    <aside class="estadisticas">
-        <h3>Ocupación Horaria</h3>
-        <meter value="0.75" min="0" max="1">75%</meter>
-        <p>Ocupación del 75% en las reservas de hoy.</p>
-    </aside>
-</section>
+        <label for="fecha">Fecha y Hora:</label>
+        <input type="datetime-local" id="fecha" name="fecha" required />
 
-<!-- Sección de Tareas -->
-<section id="tareas">
-    <h2>Tareas</h2>
-    <article class="tarea-card">
+        <label for="personas">Número de Personas:</label>
+        <input
+          type="number"
+          id="personas"
+          name="personas"
+          min="1"
+          max="10"
+          required
+        />
+
+        <button type="submit">Reservar</button>
+      </form>
+      <p id="error-message" style="color: red"></p>
+    </section>
+
+    <!-- Sección de Tareas -->
+    <section id="tareas">
+      <h2>Tareas</h2>
+      <article class="tarea-card">
         <h3>Tarea 1</h3>
         <progress value="75" max="100">75%</progress>
         <button onclick="verDetalles('tarea1')">Ver detalles</button>
-    </article>
-    <article class="tarea-card">
+      </article>
+      <article class="tarea-card">
         <h3>Tarea 2</h3>
         <progress value="50" max="100">50%</progress>
         <button onclick="verDetalles('tarea2')">Ver detalles</button>
-    </article>
-    <article class="tarea-card">
+      </article>
+      <article class="tarea-card">
         <h3>Tarea 3</h3>
         <progress value="25" max="100">25%</progress>
         <button onclick="verDetalles('tarea3')">Ver detalles</button>
-    </article>
-    <dialog id="detalle-tarea">
+      </article>
+      <dialog id="detalle-tarea">
         <h3>Detalles de la Tarea</h3>
         <p id="descripcion-tarea"></p>
         <p>Fecha límite: <time id="fecha-limite"></time></p>
         <p>Prioridad: <meter id="prioridad-tarea" min="0" max="1"></meter></p>
         <button onclick="cerrarDialogo()">Cerrar</button>
-    </dialog>
-</section>
+      </dialog>
+    </section>
 
-<script src="script.js"></script> <!-- Asegúrate de enlazar tu archivo JavaScript -->
-</body>
+    <script src="/src/js/script.js"></script>
+    <!-- Asegúrate de enlazar tu archivo JavaScript -->
+  </body>
 </html>
