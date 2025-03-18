@@ -59,6 +59,7 @@
           name="telefono"
           pattern="[0-9]{9}"
           required
+          placeholder="123456789"
         />
 
         <label for="fecha">Fecha y Hora:</label>
@@ -72,6 +73,7 @@
           min="1"
           max="10"
           required
+          placeholder="1"
         />
 
         <button type="submit">Reservar</button>
@@ -80,33 +82,49 @@
     </section>
 
     <!-- Sección de Tareas -->
-    <section id="tareas">
-      <h2>Tareas</h2>
-      <article class="tarea-card">
-        <h3>Tarea 1</h3>
-        <progress value="75" max="100">75%</progress>
-        <button onclick="verDetalles('tarea1')">Ver detalles</button>
-      </article>
-      <article class="tarea-card">
-        <h3>Tarea 2</h3>
-        <progress value="50" max="100">50%</progress>
-        <button onclick="verDetalles('tarea2')">Ver detalles</button>
-      </article>
-      <article class="tarea-card">
-        <h3>Tarea 3</h3>
-        <progress value="25" max="100">25%</progress>
-        <button onclick="verDetalles('tarea3')">Ver detalles</button>
-      </article>
-      <dialog id="detalle-tarea">
-        <h3>Detalles de la Tarea</h3>
-        <p id="descripcion-tarea"></p>
-        <p>Fecha límite: <time id="fecha-limite"></time></p>
-        <p>Prioridad: <meter id="prioridad-tarea" min="0" max="1"></meter></p>
-        <button onclick="cerrarDialogo()">Cerrar</button>
-      </dialog>
-    </section>
+    <section>
+        <div id="tareas">
+            <h2>Tareas</h2>
+            <article class="tarea-card">
+                <h3>Tarea 1</h3>
+                <progress value="75" max="100">75%</progress>
+                <button onclick="verDetalles('tarea1')">Ver detalles</button>
+            </article>
+            <dialog id="detalle-tarea">
+                <h3>Detalles de la Tarea</h3>
+                <p id="descripcion-tarea"></p>
+                <p>Fecha límite: <time id="fecha-limite"></time></p>
+                <p>Prioridad: <meter id="prioridad-tarea" min="0" max="1"></meter></p>
+                <button onclick="cerrarDialogo()">Cerrar</button>
+            </dialog>
+        </div>
+        <form id="formularioTareas">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
 
-    <script src="/src/js/script.js"></script>
-    <!-- Asegúrate de enlazar tu archivo JavaScript -->
-  </body>
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
+
+            <label for="fechaLimite">Fecha límite:</label>
+            <input type="date" id="fechaLimite" name="fechaLimite" required>
+
+            <label for="prioridad">Prioridad:</label>
+            <select id="prioridad" name="prioridad" required>
+                <option value="">Seleccione una prioridad</option>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+            </select>
+
+            <label for="progreso">Progreso:</label>
+            <input type="number" max="100" min="0" id="progreso" name="progreso"></input>
+
+            <label for="dependencias">Dependencias:</label>
+            <input type="text" id="dependencias" name="dependencias" placeholder="Ejemplo: Tarea 1, Tarea 2">
+
+            <button type="submit">Guardar Tarea</button>
+        </form>
+    </section>
+</body>
+
 </html>
