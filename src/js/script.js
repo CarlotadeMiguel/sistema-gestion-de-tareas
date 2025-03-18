@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener("DOMContentLoaded", () => {
   // Constantes globales
 
   let dialog;
@@ -10,50 +9,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorMessage = document.getElementById("error-message");
   const reservasContainer = document.createElement("div");
 
-  const fechaInputMin = document.getElementById('fechaLimite');
-  const contenedorTareas = document.getElementById('tareas');
+  const fechaInputMin = document.getElementById("fechaLimite");
+  const contenedorTareas = document.getElementById("tareas");
 
   // Validación de fecha para no permitir días pasados
   const today = new Date().toISOString().split("T")[0];
   fechaInput.setAttribute("min", today);
 
-
   /* Gestor de Tareas */
 
   // Asignar la fecha mínima al campo date del formulario de tareas
-  fechaInputMin.setAttribute('min', today);
+  fechaInputMin.setAttribute("min", today);
 
   // Función para cargar datos desde localStorage
   const cargarDatos = () => {
-    return JSON.parse(localStorage.getItem('tareas')) || [];
-  }
+    return JSON.parse(localStorage.getItem("tareas")) || [];
+  };
 
   tareas = cargarDatos();
 
   // Función para guardar datos en localStorage
   const guardarDatos = (tareas) => {
-    localStorage.setItem('tareas', JSON.stringify(tareas));
-  }
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+  };
 
   // Función para agregar una nueva tarea
   const agregarTarea = (tarea) => {
     tareas.push(tarea);
     guardarDatos(tareas);
-  }
+  };
 
   //Función para eliminar una tarea
   eliminarTarea = (id) => {
-    tareas = tareas.filter(tarea => tarea.tareaId !== id);
+    tareas = tareas.filter((tarea) => tarea.tareaId !== id);
     guardarDatos(tareas);
     mostrarTareas();
-  }
+  };
 
   // Función para mostrar las tareas guardadas
   const mostrarTareas = () => {
-    contenedorTareas.innerHTML = '';
+    contenedorTareas.innerHTML = "";
     tareas.forEach((tarea) => {
-      const tarjetaTarea = document.createElement('article');
-      tarjetaTarea.classList.add('tarea-card');
+      const tarjetaTarea = document.createElement("article");
+      tarjetaTarea.classList.add("tarea-card");
       tarjetaTarea.innerHTML = `
             <h3>${tarea.titulo}</h3>
             <progress value="${tarea.progreso}" max="100">${tarea.progreso}</progress>
@@ -69,50 +67,54 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
       contenedorTareas.appendChild(tarjetaTarea);
     });
-  }
+  };
 
   //Función para mostrar el dialog con los detalles
   abrirDialogo = (id) => {
     dialog = document.getElementById(id);
     dialog.showModal();
-  }
+  };
 
   //Función para cerrar el dialog con los detalles
   cerrarDialogo = () => {
     dialog.close();
-  }
+  };
 
   // Recoger los datos del formulario
-  document.getElementById('formularioTareas').addEventListener('submit', (e) => {
-    e.preventDefault();
+  document
+    .getElementById("formularioTareas")
+    .addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    const titulo = document.getElementById('titulo').value;
-    const numId = tareas.length + 1;
-    const tareaId = titulo.trim() + numId;
-    const descripcion = document.getElementById('descripcion').value;
-    const fechaLimite = document.getElementById('fechaLimite').value;
-    const prioridad = document.getElementById('prioridad').value;
-    const progreso = document.getElementById('progreso').value ? document.getElementById('progreso').value : 0;
-    const dependencias = document.getElementById('dependencias').value;
+      const titulo = document.getElementById("titulo").value;
+      const numId = tareas.length + 1;
+      const tareaId = titulo.trim() + numId;
+      const descripcion = document.getElementById("descripcion").value;
+      const fechaLimite = document.getElementById("fechaLimite").value;
+      const prioridad = document.getElementById("prioridad").value;
+      const progreso = document.getElementById("progreso").value
+        ? document.getElementById("progreso").value
+        : 0;
+      const dependencias = document.getElementById("dependencias").value;
 
-    const nuevaTarea = {
-      titulo,
-      tareaId,
-      descripcion,
-      fechaLimite,
-      prioridad,
-      progreso,
-      dependencias
-    };
+      const nuevaTarea = {
+        titulo,
+        tareaId,
+        descripcion,
+        fechaLimite,
+        prioridad,
+        progreso,
+        dependencias,
+      };
 
-    agregarTarea(nuevaTarea);
+      agregarTarea(nuevaTarea);
 
-    // Limpiar el formulario
-    document.getElementById('formularioTareas').reset();
+      // Limpiar el formulario
+      document.getElementById("formularioTareas").reset();
 
-    // Mostrar las tareas actualizadas
-    mostrarTareas();
-  });
+      // Mostrar las tareas actualizadas
+      mostrarTareas();
+    });
 
   // Mostrar las tareas al cargar la página
   mostrarTareas();
@@ -177,18 +179,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement("div");
       card.classList.add("reserva-card");
       card.innerHTML = `
-                <h3>Reserva #${reserva.id}</h3>
-                <p>Cliente: ${reserva.cliente}</p>
-                <p>Teléfono: ${reserva.telefono}</p>
-                <p>Fecha: ${reserva.fecha}</p>
-                <p>Personas: ${reserva.personas}</p>
-                <p>Estado: ${reserva.estado}</p>
-            `;
+        <h3>Reserva #${reserva.id}</h3>
+        <p>Cliente: ${reserva.cliente}</p>
+        <p>Teléfono: ${reserva.telefono}</p>
+        <p>Fecha: ${reserva.fecha}</p>
+        <p>Personas: ${reserva.personas}</p>
+        <p>Estado: ${reserva.estado}</p>
+        <button class="delete-btn" data-id="${reserva.id}">Eliminar</button>
+      `;
+
+      // Agregar evento para eliminar la reserva
+      const deleteButton = card.querySelector(".delete-btn");
+      deleteButton.addEventListener("click", () => {
+        eliminarReserva(reserva.id);
+      });
+
       fragment.appendChild(card);
     });
 
     reservasContainer.innerHTML = "";
     reservasContainer.appendChild(fragment);
+  }
+
+  function eliminarReserva(id) {
+    let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+    reservas = reservas.filter((reserva) => reserva.id !== id); // Filtrar la reserva a eliminar
+    localStorage.setItem("reservas", JSON.stringify(reservas)); // Guardar las reservas actualizadas
+    renderReservas(); // Volver a renderizar las reservas
   }
 
   // Renderizar reservas al cargar la página
