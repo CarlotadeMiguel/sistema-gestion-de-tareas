@@ -9,8 +9,6 @@ reservasContainer.id = "reservas-container";
 document.body.appendChild(reservasContainer);
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded");
-
   // Validación de fecha para no permitir días pasados
   const today = new Date().toISOString().split("T")[0];
   fechaInput.setAttribute("min", today);
