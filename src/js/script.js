@@ -166,8 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const titulo = document.getElementById("titulo").value;
-      const numId = tareas.length + 1;
-      const tareaId = titulo.trim() + numId;
+      const tareaId = crypto.randomUUID();
       const descripcion = document.getElementById("descripcion").value;
       const fechaLimite = document.getElementById("fechaLimite").value;
       const prioridad = document.getElementById("prioridad").value;
