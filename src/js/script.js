@@ -155,6 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const reserva = {
         id: Date.now(),
         cliente: form.nombre.value,
+        cliente1: form.apellido1.value,
+        cliente2: form.apellido2.value,
         telefono: form.telefono.value,
         fecha: form.fecha.value,
         personas: form.personas.value,
@@ -180,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.add("reserva-card");
       card.innerHTML = `
         <h3>Reserva #${reserva.id}</h3>
-        <p>Cliente: ${reserva.cliente}</p>
+        <p>Cliente: ${reserva.cliente} ${reserva.cliente1} ${reserva.cliente2}</p>
         <p>Teléfono: ${reserva.telefono}</p>
         <p>Fecha: ${reserva.fecha}</p>
         <p>Personas: ${reserva.personas}</p>
