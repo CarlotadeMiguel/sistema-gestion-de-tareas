@@ -6,7 +6,16 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.logo {
+    position: absolute;
+    top: var(--spacing-base);
+    left: var(--spacing-base);
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
 /* Variables CSS Globales */
+
 :root {
     --color-primary: #2c3e50;   /* Color principal para botones y títulos */
     --color-danger: #e74c3c;    /* Uso en errores y elementos críticos */
@@ -17,6 +26,7 @@
 }
 
 /* Modo oscuro */
+
 @media (prefers-color-scheme: dark) {
     :root {
         --color-primary: #0b1ae9;   /* Color principal para botones y títulos en modo oscuro */
@@ -26,6 +36,7 @@
 }
 
 /* Estilos de navegación */
+
 nav {
     background-color: var(--color-primary);
     padding: var(--spacing-base);
@@ -45,6 +56,7 @@ nav a {
 }
 
 /* Estilos de secciones y artículos */
+
 section {
     padding: var(--spacing-lg);
 }
@@ -57,6 +69,13 @@ h2 {
 
 }
 
+h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-base);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: uppercase;
+}
+
 .reserva-card, .tarea-card {
     background-color: white;
     padding: var(--spacing-base);
@@ -65,8 +84,29 @@ h2 {
     border-radius: 8px;
 }
 
+.reserva-card {
+    background-color: white;
+    padding: var(--spacing-base);
+    padding-left: 50px;
+    padding-right: 50px;
+    box-shadow: var(--shadow);
+    margin-bottom: var(--spacing-lg);
+    border-radius: 8px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+}
+
+.reservas-container{
+    padding: var(--spacing-base);
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 100px;
+}
+
 .reserva-card time, .tarea-card h3 {
     color: var(--color-primary);
+    color:#0b1ae9;
 }
 
 button {
@@ -100,6 +140,7 @@ dialog {
 }
 
 /* Estilos para el formulario de reserva inteligente */
+
 #reserva {
     padding: var(--spacing-lg);
     background-color: white;
@@ -131,7 +172,7 @@ dialog {
     margin-bottom: var(--spacing-base);
     padding: var(--spacing-sm);
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 40px;
     font-size: 1rem;
 }
 
@@ -154,4 +195,100 @@ dialog {
 #error-message {
     color: var(--color-danger);
     margin-top: var(--spacing-base);
+    
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        width: 80px; /* Ajusta el tamaño según sea necesario */
+        margin-bottom: var(--spacing-base);
+        margin-left: -10px;
+        margin-right: -10px;
+        
+    }
+
+    h2, h3 {
+        font-size: 1.5rem; /* Ajusta el tamaño según sea necesario */
+        
+    }
+
+    nav a {
+        margin-right: 10;
+        margin-bottom: var(--spacing-sm);
+        font-size: 25px;
+        text-decoration: none;
+    padding: var(--spacing-sm);
+    font-weight: uppercase;
+    margin-left: 20px;
+    margin-right: 0px;
+    }
+
+    nav a:last-child {
+        margin-bottom: 0;
+        font-size: 25px;
+        text-decoration: none;
+    margin-left: 0.5px;
+    margin-right: 0.5px;
+    }
+
+    
+.reservas-container{
+    padding: var(--spacing-base);
+    padding-left: 0.3px;
+    padding-right: 0.3px;
+    margin-left: 0.3px;
+}
+
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: none;
+    }
+
+    .logo {
+        width: 60px; /* Ajusta el tamaño según sea necesario */
+    }
+
+    h2, h3 {
+        font-size: 1.2rem; /* Ajusta el tamaño según sea necesario */
+    }
+
+    section {
+        padding: var(--spacing-sm);
+    }
+
+    .reserva-card, .tarea-card {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    
+    nav a {
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: var(--spacing-sm);
+        font-size: 25px;
+        text-decoration: none;
+    padding: var(--spacing-sm);
+    font-weight: uppercase;
+    }
+
+    
+.reservas-container{
+    padding: var(--spacing-base);
+    padding-left: 0.5px;
+    padding-right: 0.5px;
+    margin-left: 0.5px;
+}
 }
