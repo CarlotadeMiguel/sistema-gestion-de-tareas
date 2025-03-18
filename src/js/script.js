@@ -58,10 +58,36 @@ document.addEventListener("DOMContentLoaded", () => {
             <button onclick="abrirDialogo('${tarea.tareaId}')">Ver detalles</button>
             <button onclick="eliminarTarea('${tarea.tareaId}')">Borrar Tarea</button>
             <dialog id="${tarea.tareaId}">
-                    <h3>${tarea.titulo}</h3>
-                    <p id="descripcion-tarea">${tarea.descripcion}</p>
-                    <p>Fecha límite: <time id="fecha-limite">${tarea.fechaLimite}</time></p>
-                    <p>Prioridad: <meter id="prioridad-tarea" min="0" max="1">${tarea.prioridad}</meter></p>
+                    <form id="formularioTareasEditar">
+                        <label for="tituloE">Título:</label>
+                        <input type="text" id="tituloE" name="tituloE" value="${tarea.titulo}" required readonly>
+
+                        <label for="tareaIdE">ID: </label>
+                        <input type="text" id="tareaIdE" name="tareaIdE" value="${tarea.tareaId}" disabled>
+
+                        <label for="descripcionE">Descripción:</label>
+                        <textarea id="descripcionE" name="descripcionE" required readonly> ${tarea.descripcion}</textarea>
+
+                        <label for="fechaLimiteE">Fecha límite:</label>
+                        <input type="date" id="fechaLimiteE" name="fechaLimiteE" value="${tarea.fechaLimite}" required readonly>
+
+                        <label for="prioridadE">Prioridad:</label>
+                        <select id="prioridadE" name="prioridadE" required readonly> 
+                            <option value="${tarea.prioridad}">${tarea.prioridad.charAt(0).toUpperCase() + tarea.prioridad.slice(1)}</option>
+                            <option value="alta">Alta</option>
+                            <option value="media">Media</option>
+                            <option value="baja">Baja</option>
+                        </select>
+
+                        <label for="progresoE">Progreso:</label>
+                        <input type="number" max="100" min="0" id="progresoE" name="progresoE"  value="${tarea.progreso}" readonly></input>
+
+                        <label for="dependenciasE">Dependencias:</label>
+                        <input type="text" id="dependenciasE" name="dependenciasE"  value="${tarea.dependencias}" readonly>
+
+                        <button type="submit">Guardar Tarea</button>
+                    </form>
+                    <button onclick="editarTarea()">Editar Tarea</button>
                     <button onclick="cerrarDialogo()">Cerrar</button>
             </dialog>
             `;
@@ -79,6 +105,59 @@ document.addEventListener("DOMContentLoaded", () => {
   cerrarDialogo = () => {
     dialog.close();
   };
+
+  //Editar formulario
+  editarTarea = () => {
+    const formEditar = document.getElementById('formularioTareasEditar');
+    const campos = formEditar.querySelectorAll('input, textarea, select');
+    campos.forEach(campo => {
+      campo.removeAttribute('readonly');
+    });
+
+    formEditar.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const titulo = document.getElementById('tituloE').value;
+      const tareaId = document.getElementById('tareaIdE').value;
+      const descripcion = document.getElementById('descripcionE').value;
+      const fechaLimite = document.getElementById('fechaLimiteE').value;
+      const prioridad = document.getElementById('prioridadE').value;
+      const progreso = document.getElementById('progresoE').value;
+      const dependencias = document.getElementById('dependenciasE').value;
+
+      const nuevaTarea = {
+        titulo,
+        tareaId,
+        descripcion,
+        fechaLimite,
+        prioridad,
+        progreso,
+        dependencias
+      };
+
+      tareas = tareas.filter(tarea => tarea.tareaId !== nuevaTarea.tareaId);
+      guardarDatos(tareas);
+      tareas.push(nuevaTarea);
+      guardarDatos(tareas);
+      console.log(tareas);
+
+      document.getElementById('tituloE').value = titulo;
+      document.getElementById('tareaIdE').value = tareaId;
+      document.getElementById('descripcionE').value = descripcion;
+      document.getElementById('fechaLimiteE').value = fechaLimite;
+      document.getElementById('prioridadE').value = prioridad;
+      document.getElementById('progresoE').value = progreso;
+      document.getElementById('dependenciasE').value = dependencias
+
+      campos.forEach(campo => {
+        campo.setAttribute('readonly', true);
+      });
+
+      // Mostrar las tareas actualizadas
+      mostrarTareas();
+    });
+
+  }
 
   // Recoger los datos del formulario
   document
