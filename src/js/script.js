@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <input type="date" id="fechaLimiteE" name="fechaLimiteE" value="${tarea.fechaLimite}" required readonly>
 
                         <label for="prioridadE">Prioridad:</label>
-                        <select id="prioridadE" name="prioridadE" required readonly>
-                            <option value="${tarea.prioridad}">${tarea.prioridad}</option>
+                        <select id="prioridadE" name="prioridadE" required readonly> 
+                            <option value="${tarea.prioridad}">${tarea.prioridad.charAt(0).toUpperCase() + tarea.prioridad.slice(1)}</option>
                             <option value="alta">Alta</option>
                             <option value="media">Media</option>
                             <option value="baja">Baja</option>
